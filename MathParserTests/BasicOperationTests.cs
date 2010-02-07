@@ -86,6 +86,39 @@ namespace MathParserTests
             _sut = _compiler.Compile("1.11*123.23*99.5*993.3*22*44.2*33.3");
             Assert.That(_sut(1.0), Is.EqualTo(1.11 * 123.23 * 99.5 * 993.3 * 22 * 44.2 * 33.3));
 
+            _sut = _compiler.Compile("1.11+123.23-99.5");
+            Assert.That(_sut(1.0), Is.EqualTo(1.11 + 123.23 - 99.5));
+
+            _sut = _compiler.Compile("9.0/3.0");
+            Assert.That(_sut(1.0), Is.EqualTo(9.0 / 3.0));
+
+            _sut = _compiler.Compile("9.0/3.0+1.2");
+            Assert.That(_sut(1.0), Is.EqualTo(9.0 / 3.0 + 1.2));
+        }
+
+        [Test]
+        public void FactorOperationTests()
+        {
+            _sut = _compiler.Compile("22/44.2*33.3");
+            Assert.That(_sut(1.0), Is.EqualTo(22 / 44.2 * 33.3));
+        }
+
+        [Test]
+        public void BasicComplexOperationTests()
+        {
+            _sut = _compiler.Compile("2.8+1.3+22/44.2*33.3");
+            Assert.That(_sut(1.0), Is.EqualTo(2.8 + 1.3 + 22 / 44.2 * 33.3));
+        }
+
+        [Test]
+        public void ComplexOperationTests()
+        {
+            _sut = _compiler.Compile("1.11+123.23-99.5*993.3*22/44.2*33.3");
+            Assert.That(_sut(1.0), Is.EqualTo(1.11 + 123.23 - 99.5 * 993.3 * 22 / 44.2 * 33.3));
+
+            _sut = _compiler.Compile("1.11-123.23*99.5+993.3*22*44.2/33.3");
+            Assert.That(_sut(1.0), Is.EqualTo(1.11 - 123.23 * 99.5 + 993.3 * 22 * 44.2 / 33.3));
+
         }
 
     }

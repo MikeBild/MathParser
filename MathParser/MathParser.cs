@@ -10,7 +10,7 @@ namespace MathParser
                                                   {
                                                       string rest = input.Input;
                                                       string val = String.Empty;
-                                                      while (rest.Length > 0 && rest[0] == '+')
+                                                      while (rest.Length > 0 && (rest[0] == '+' || rest[0] == '-'))
                                                       {
                                                           val += rest[0];
                                                           rest = rest.Substring(1);
@@ -24,7 +24,7 @@ namespace MathParser
                                                       return new ParserResult
                                                                  {
                                                                      Input = rest,
-                                                                     ExpressionType = ExpressionType.Add,
+                                                                     ExpressionType = val == "+" ? ExpressionType.Add : ExpressionType.Subtract,
                                                                      Output = input.Output
                                                                  };
                                                   };
@@ -59,7 +59,7 @@ namespace MathParser
                                                   {
                                                       string rest = input.Input;
                                                       string val = String.Empty;
-                                                      while (rest.Length > 0 && rest[0] == '*')
+                                                      while (rest.Length > 0 && (rest[0] == '*' || rest[0] == '/'))
                                                       {
                                                           val += rest[0];
                                                           rest = rest.Substring(1);
@@ -74,7 +74,7 @@ namespace MathParser
                                                       return new ParserResult
                                                                  {
                                                                      Input = rest,
-                                                                     ExpressionType = ExpressionType.Multiply,
+                                                                     ExpressionType = val == "*" ? ExpressionType.Multiply : ExpressionType.Divide,
                                                                      Output = input.Output
                                                                  };
                                                   };
@@ -103,7 +103,7 @@ namespace MathParser
             component = input => (from i in factor(input)
                                   from k in mul(i)
                                   from o in factor(k)
-                                  select k.ExpressionType == ExpressionType.Multiply
+                                  select k.ExpressionType == ExpressionType.Multiply || k.ExpressionType == ExpressionType.Divide
                                              ? new ParserResult
                                                    {
                                                        ExpressionType = k.ExpressionType,
@@ -126,7 +126,7 @@ namespace MathParser
                                      (
                                          from k in mul(input)
                                          from o in factor(k)
-                                         select k.ExpressionType == ExpressionType.Multiply
+                                         select k.ExpressionType == ExpressionType.Multiply || k.ExpressionType== ExpressionType.Divide
                                                     ?
                                                         new ParserResult
                                                             {
