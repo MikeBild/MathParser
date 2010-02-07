@@ -29,7 +29,6 @@ namespace MathParser
             {
                 if (parser1.Output == null && parser2.Output == null)
                 {
-                    //return null;
                     parserResult.Input = parser1.Input;
                     parserResult.Output = parser1.Output;
                     parserResult.ExpressionType = parser1.ExpressionType;
@@ -50,14 +49,5 @@ namespace MathParser
 
             return parserResult;
         }
-
-        //public static ParserFunction AND(this ParserFunction parser1, ParserFunction parser2)
-        //{
-        //    return input =>
-        //               {
-        //                   var p1 = parser1(input);
-        //                   return p1 != null ? parser2(p1) : null;
-        //               };
-        //}
     }
 }

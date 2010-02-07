@@ -79,9 +79,9 @@ namespace MathParser
                                                                  };
                                                   };
 
-        internal Expression Parse(string s)
+        internal Expression Parse(string function)
         {
-            var z = new ParserResult {Input = s, Output = null};
+            var z = new ParserResult { Input = function.Replace(" ", ""), Output = null };
 
             /*
             * number     = {"0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"}
@@ -180,6 +180,7 @@ namespace MathParser
                                           from i in input
                                           select i
                                       );
+
             ParserResult all = from o in Repeat(expression, z)
                                select o;
             return all.Output;
