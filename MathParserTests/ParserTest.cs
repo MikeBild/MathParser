@@ -20,14 +20,23 @@ namespace MathParserTests
         [Test]
         public void BasicTest()
         {
-            var actual = _sut.Parse("1+2*4");
+            var actual = _sut.Parse(0, "1+2*4");
             Assert.That(actual, Is.EqualTo(1 + 2 * 4));
-            actual = _sut.Parse("1.1+2.3*4.8");
+            actual = _sut.Parse(0, "1.1+2.3*4.8");
             Assert.That(actual, Is.EqualTo(1.1 + 2.3 * 4.8));
-            actual = _sut.Parse("1.1/2.3*4.8");
+            actual = _sut.Parse(0, "1.1/2.3*4.8");
             Assert.That(actual, Is.EqualTo(1.1 / 2.3 * 4.8));
-            actual = _sut.Parse("1.1/2.3*(4.8+2)+2.1");
+            actual = _sut.Parse(0, "1.1/2.3*(4.8+2)+2.1");
             Assert.That(actual, Is.EqualTo(1.1 / 2.3 * (4.8 + 2) + 2.1));
+        }
+
+        [Test]
+        public void ParameterTest()
+        {
+            var actual = _sut.Parse(10, "x*1.1/2.3*(4.8+2)+2.1");
+            Assert.That(actual, Is.EqualTo(10 * 1.1 / 2.3 * (4.8 + 2) + 2.1));
+            actual = _sut.Parse(10, "1.1/2.3*(4.8+2*x)+2.1");
+            Assert.That(actual, Is.EqualTo(1.1 / 2.3 * (4.8 + 2 * 10) + 2.1));
         }
     }
 }
