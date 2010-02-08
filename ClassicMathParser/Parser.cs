@@ -3,17 +3,28 @@ using System.Collections.Generic;
 
 namespace ClassicMathParser
 {
-    public class Parser
+    /// <summary>
+    ///  number     = {"0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"}
+    ///  factor     = number | "(" expression ")"
+    ///  component  = factor [{("*" | "/") factor}]
+    ///  expression = component [{("+" | "-") component}]
+    /// </summary>
+    public class Parser : ICompiler
     {
-        /*
-        number     = {"0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"}
-        factor     = number | "(" expression ")"
-        component  = factor [{("*" | "/") factor}]
-        expression = component [{("+" | "-") component}]
-        */
-
         private Lexer _lexer;
+        private double _x;
 
+        public Func<double, double> Compile(string function)
+        {
+            return input => Parse(input, function);
+        }
+
+        public double Parse(double x, string function)
+        {
+            _lexer = new Lexer(function);
+            _x = x;
+            return Expression();
+        }
 
         private double Expression()
         {
@@ -31,7 +42,6 @@ namespace ClassicMathParser
             _lexer.Reverse();
             return component1;
         }
-
         private double Factor()
         {
             double number1 = Number();
@@ -63,6 +73,10 @@ namespace ClassicMathParser
             {
                 result = token.Value;
             }
+            else if (token.TokenType == TokenType.Parameter)
+            {
+                result = _x;
+            }
             else
             {
                 throw new InvalidOperationException("Not a number");
@@ -70,10 +84,5 @@ namespace ClassicMathParser
             return result;
         }
 
-        public double Parse(string function)
-        {
-            _lexer = new Lexer(function);
-            return Expression();
-        }
     }
 }
