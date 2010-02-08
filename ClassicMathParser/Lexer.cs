@@ -13,7 +13,7 @@ namespace ClassicMathParser
 
         public Lexer(string input)
         {
-            _tokens = Tokenize(input);
+            _tokens = Tokenize(input.Replace(" ", ""));
         }
 
         public Token Current
