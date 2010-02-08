@@ -23,7 +23,7 @@ namespace ClassicMathParser
 
         private static Token[] Tokenize(string equation)
         {
-            var RE = new Regex(@"([\+\-\*\(\)\^\/])");
+            var RE = new Regex(@"(sin\(x\))([\+\-\*\(\)\/\^])|([\+\-\*\(\)\/\^])(sin\(x\))|([\+\-\*\(\)\/\^])");
             List<Token> tokens = (RE.Split(equation).Where(f => f != "").Select(f =>
                                                                                     {
                                                                                         if (f == "+")
@@ -62,7 +62,7 @@ namespace ClassicMathParser
                                                                                                                .
                                                                                                                Parameter
                                                                                                        };
-                                                                                        if (f == "^")
+                                                                                        if (f == "^2")
                                                                                             return new Token
                                                                                                        {
                                                                                                            TokenType =
@@ -100,7 +100,7 @@ namespace ClassicMathParser
                                                                                                            f.ToDouble()
                                                                                                    };
                                                                                     })).ToList();
-            tokens.Add(new Token {TokenType = TokenType.End});
+            tokens.Add(new Token { TokenType = TokenType.End });
             return tokens.ToArray();
         }
 

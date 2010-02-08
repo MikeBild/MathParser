@@ -40,9 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicOperationTests.cs" />
     <Compile Include="LexerTests.cs" />
-    <Compile Include="ParenOperationTests.cs" />
     <Compile Include="ParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,10 +48,6 @@
     <ProjectReference Include="..\ClassicMathParser\ClassicMathParser.csproj">
       <Project>{B5341FE9-DA3C-42C6-B2B4-0B16C7D01C18}</Project>
       <Name>ClassicMathParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MathParser\MathParser.csproj">
-      <Project>{FA533EC9-4113-4A18-9897-8D1710CC401D}</Project>
-      <Name>MathParser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

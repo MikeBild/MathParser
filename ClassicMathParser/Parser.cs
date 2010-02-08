@@ -77,6 +77,14 @@ namespace ClassicMathParser
             {
                 result = _x;
             }
+            else if(token.TokenType == TokenType.Sin)
+            {
+                result = Math.Sin(_x);
+            }
+            else if(token.TokenType == TokenType.Quadrat)
+            {
+                result = token.Value*token.Value;
+            }
             else
             {
                 throw new InvalidOperationException("Not a number");

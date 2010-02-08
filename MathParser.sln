@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathParser", "MathParser\MathParser.csproj", "{FA533EC9-4113-4A18-9897-8D1710CC401D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathParserTests", "MathParserTests\MathParserTests.csproj", "{D846EE34-B004-43C4-A2D3-3F6311D83AF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicMathParser", "ClassicMathParser\ClassicMathParser.csproj", "{B5341FE9-DA3C-42C6-B2B4-0B16C7D01C18}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FA533EC9-4113-4A18-9897-8D1710CC401D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA533EC9-4113-4A18-9897-8D1710CC401D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA533EC9-4113-4A18-9897-8D1710CC401D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA533EC9-4113-4A18-9897-8D1710CC401D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D846EE34-B004-43C4-A2D3-3F6311D83AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D846EE34-B004-43C4-A2D3-3F6311D83AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D846EE34-B004-43C4-A2D3-3F6311D83AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
