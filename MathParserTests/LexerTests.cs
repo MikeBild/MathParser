@@ -32,7 +32,7 @@ namespace MathParserTests
         [Test]
         public void ParameterTest()
         {
-            _lexer = new Lexer("x+1.99+1.2");            
+            _lexer = new Lexer("x+1.99+1.2");
             Assert.That(_lexer.Current.TokenType, Is.EqualTo(TokenType.Parameter));
             _lexer.MoveNext();
             Assert.That(_lexer.Current.TokenType, Is.EqualTo(TokenType.Plus));
@@ -42,6 +42,16 @@ namespace MathParserTests
             Assert.That(_lexer.Current.TokenType, Is.EqualTo(TokenType.Plus));
             _lexer.MoveNext();
             Assert.That(_lexer.Current.Value, Is.EqualTo(1.2));
+        }
+
+        [Test]
+        public void ComplexTest()
+        {
+            _lexer = new Lexer("x+1.99+1.2");
+            Assert.That(_lexer._tokens.Count(), Is.EqualTo(6));
+            _lexer = new Lexer("1.1/2.3*(4.8+2)");
+            Assert.That(_lexer._tokens.Count(), Is.EqualTo(10));
+
         }
 
     }

@@ -26,8 +26,8 @@ namespace MathParserTests
             Assert.That(actual, Is.EqualTo(1.1 + 2.3 * 4.8));
             actual = _sut.Parse("1.1/2.3*4.8");
             Assert.That(actual, Is.EqualTo(1.1 / 2.3 * 4.8));
-            actual = _sut.Parse("1.1/2.3*(4.8+2)");
-            Assert.That(actual, Is.EqualTo(1.1 / 2.3 * (4.8 + 2)));
+            actual = _sut.Parse("1.1/2.3*(4.8+2)+2.1");
+            Assert.That(actual, Is.EqualTo(1.1 / 2.3 * (4.8 + 2) + 2.1));
         }
     }
 }

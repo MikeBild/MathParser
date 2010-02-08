@@ -8,7 +8,7 @@ namespace ClassicMathParser
 {
     public class Lexer
     {
-        private readonly Token[] _tokens;
+        internal readonly Token[] _tokens;
         private bool _goReverse = false;
         private Token _previousToken = null;
 
@@ -17,7 +17,7 @@ namespace ClassicMathParser
         private static Token[] Tokenize(string equation)
         {
             var RE = new Regex(@"([\+\-\*\(\)\^\/])");
-            var tokens = (RE.Split(equation).Select(f =>
+            var tokens = (RE.Split(equation).Where(f => f != "").Select(f =>
                                                   {
                                                       if (f == "+")
                                                           return new Token { TokenType = TokenType.Plus };
@@ -29,14 +29,15 @@ namespace ClassicMathParser
                                                           return new Token { TokenType = TokenType.Divide };
                                                       if (f == "x")
                                                           return new Token { TokenType = TokenType.Parameter };
-                                                      if (f == "^2")
+                                                      if (f == "^")
                                                           return new Token { TokenType = TokenType.Quadrat };
                                                       if (f == "(")
                                                           return new Token { TokenType = TokenType.LParen };
                                                       if (f == ")")
                                                           return new Token { TokenType = TokenType.RParen };
-                                                      if (f == "sin")
+                                                      if (f == "sin(x)")
                                                           return new Token { TokenType = TokenType.Sin };
+
                                                       return new Token { TokenType = TokenType.Number, Value = f.ToDouble() };
                                                   })).ToList();
             tokens.Add(new Token { TokenType = TokenType.End });

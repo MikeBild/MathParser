@@ -55,6 +55,7 @@ namespace ClassicMathParser
             if (token.TokenType == TokenType.LParen)
             {
                 result = Expression();
+                token = _lexer.MoveNext();
                 if (token.TokenType != TokenType.RParen)
                     throw new InvalidOperationException(") expected!");
             }
