@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D846EE34-B004-43C4-A2D3-3F6311D83AF8}</ProjectGuid>
+    <ProjectGuid>{B5341FE9-DA3C-42C6-B2B4-0B16C7D01C18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MathParserTests</RootNamespace>
-    <AssemblyName>MathParserTests</AssemblyName>
+    <RootNamespace>ClassicMathParser</RootNamespace>
+    <AssemblyName>ClassicMathParser</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -40,21 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicOperationTests.cs" />
-    <Compile Include="LexerTests.cs" />
-    <Compile Include="ParenOperationTests.cs" />
-    <Compile Include="ParserTest.cs" />
+    <Compile Include="Lexer.cs" />
+    <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassicMathParser\ClassicMathParser.csproj">
-      <Project>{B5341FE9-DA3C-42C6-B2B4-0B16C7D01C18}</Project>
-      <Name>ClassicMathParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MathParser\MathParser.csproj">
-      <Project>{FA533EC9-4113-4A18-9897-8D1710CC401D}</Project>
-      <Name>MathParser</Name>
-    </ProjectReference>
+    <Compile Include="StringExtentions.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokenType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
