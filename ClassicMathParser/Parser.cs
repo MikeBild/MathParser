@@ -19,7 +19,7 @@ namespace ClassicMathParser
             return input => Parse(input, function);
         }
 
-        public double Parse(double x, string function)
+        internal double Parse(double x, string function)
         {
             _lexer = new Lexer(function);
             _x = x;
@@ -42,6 +42,7 @@ namespace ClassicMathParser
             _lexer.Reverse();
             return component1;
         }
+
         private double Factor()
         {
             double number1 = Number();
@@ -58,37 +59,36 @@ namespace ClassicMathParser
             _lexer.Reverse();
             return number1;
         }
+
         private double Number()
         {
             double result = 0;
             Token token = _lexer.MoveNext();
-            if (token.TokenType == TokenType.LParen)
+           
+            switch (token.TokenType)
             {
-                result = Expression();
-                token = _lexer.MoveNext();
-                if (token.TokenType != TokenType.RParen)
-                    throw new InvalidOperationException(") expected!");
+                case TokenType.LParen:
+                    result = Expression();
+                    token = _lexer.MoveNext();
+                    if (token.TokenType != TokenType.RParen)
+                        throw new InvalidOperationException(") expected!");
+                    break;
+                case TokenType.Number:
+                    result = token.Value;
+                    break;
+                case TokenType.Parameter:
+                    result = _x;
+                    break;
+                case TokenType.Sin:
+                    result = Math.Sin(_x);
+                    break;
+                case TokenType.Quadrat:
+                    result = token.Value*token.Value;
+                    break;
+                default:
+                    throw new InvalidOperationException("Not a number");
             }
-            else if (token.TokenType == TokenType.Number)
-            {
-                result = token.Value;
-            }
-            else if (token.TokenType == TokenType.Parameter)
-            {
-                result = _x;
-            }
-            else if(token.TokenType == TokenType.Sin)
-            {
-                result = Math.Sin(_x);
-            }
-            else if(token.TokenType == TokenType.Quadrat)
-            {
-                result = token.Value*token.Value;
-            }
-            else
-            {
-                throw new InvalidOperationException("Not a number");
-            }
+
             return result;
         }
 
